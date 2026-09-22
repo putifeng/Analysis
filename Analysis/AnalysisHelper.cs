@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -6,6 +7,12 @@ namespace Analysis
 {
     public static class AnalysisHelper
     {
+
+        public static bool CompareString()
+        {
+            return true;
+        }
+        
         public static T? GetParentOfType<T>(this SyntaxNode syntaxNode) where T : class
         {
             SyntaxNode? parentNode = syntaxNode.Parent;
@@ -19,6 +26,18 @@ namespace Analysis
                 parentNode = parentNode.Parent;
             }
 
+            return default;
+        }
+        
+        public static T ChildNodesFirst<T>(this SyntaxNode syntaxNode) where T : SyntaxNode
+        {
+            foreach (var descendantNode in syntaxNode.ChildNodes())
+            {
+                if (descendantNode is T node)
+                {
+                    return node;
+                }
+            }
             return default;
         }
         

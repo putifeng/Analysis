@@ -11,10 +11,28 @@ namespace Analysis
         public static AnalyzerDiagnostic LocalizationLimit = new AnalyzerDiagnostic(
             "P00001",
             "P00001",
-            "请把中文定义在 cfg_LanguageCode.xlsx 内 或 class LanguageCode 内 ",
+            "请把中文定义在指定的类型内",
             "Usage",
             DiagnosticSeverity.Error);
         
+        
+        public static AnalyzerDiagnostic NewFreeLimit = new AnalyzerDiagnostic(
+            "P00101",
+            "P00101",
+            "对象未释放",
+            "Usage",
+            DiagnosticSeverity.Error);
+
+        
+        public static AnalyzerDiagnostic RecursionLimit = new AnalyzerDiagnostic(
+            "P00102",
+            "P00102",
+            "禁止递归属性",
+            "Usage",
+            DiagnosticSeverity.Error);
+
+        public static ImmutableArray<DiagnosticDescriptor> TotalFree => ImmutableArray.Create(LocalizationLimit.Rule,NewFreeLimit.Rule,RecursionLimit.Rule);
+
     }
 
     public class AnalyzerDiagnostic
@@ -26,9 +44,6 @@ namespace Analysis
             Rule = new DiagnosticDescriptor(id,title,message,category,severity, isEnabledByDefault: true, description: "");
         }
 
-        public sampleDescriptor ToDiagnosticDescriptorArray()
-        {
-            return new sampleDescriptor(ImmutableArray.Create(Rule),Rule);
-        }
+  
     }
 }

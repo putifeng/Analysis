@@ -25,6 +25,7 @@ public class Examples
         log(abc == "abc" ? $"中文{10}x":"");
         TTT($"中文{10}x");
         TTT("中文");
+        TTT("中文" + "中123");
         log("中文");
     }
     
